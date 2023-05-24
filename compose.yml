@@ -1,0 +1,43 @@
+services:
+  site1:
+    build:
+      context: ./site1
+      dockerfile: Dockerfile 
+    image: site1
+    container_name: site1
+    networks:
+      - asa
+  site2:
+    build:
+      context:  ./site2
+      dockerfile: Dockerfile
+    image: site2
+    container_name: site2
+    networks:
+      - asa  
+  site3:
+    build:
+      context:  ./site3
+      dockerfile: Dockerfile
+    image: site3
+    container_name: site3
+    networks:
+      - asa
+  proxy:
+    build:
+      context: ./proxy
+      dockerfile: Dockerfile
+    image: proxy
+    container_name: proxy
+    ports:
+      - "8080:80"
+    depends_on:
+      - site1
+      - site2
+      - site3
+    networks:
+      - asa
+#Docker Networks
+networks:
+  asa:
+    driver: bridge
