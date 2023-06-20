@@ -23,6 +23,17 @@ services:
     container_name: site3
     networks:
       - asa
+  dns:
+    build:
+      context: ./etc 
+      dockerfile: Dockerfile
+    image: bind
+    container_name: bind
+    networks:
+      - asa
+    ports:
+      - "53:53/tcp"
+      - "53:53/udp" 
   proxy:
     build:
       context: ./proxy

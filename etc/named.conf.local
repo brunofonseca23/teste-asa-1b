@@ -1,0 +1,11 @@
+zone "asa.rn.br" { // Change to desired zone
+	type master;
+	file "/etc/bind/db.asa.rn.br";	// Change to zone file path
+	allow-transfer {0.0.0.0; };		// Change to Secondary DNS IP
+};
+
+zone "1.25.10.in-addr.arpa" {
+	type master;
+	file "/etc/bind/rv.asa.rn.br";
+	allow-transfer {0.0.0.0; };
+};
